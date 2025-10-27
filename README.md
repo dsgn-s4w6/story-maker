@@ -1,3 +1,7 @@
-Get started by customizing your environment (defined in the .idx/dev.nix file) with the tools and IDE extensions you'll need for your project!
+# Story Maker by S4W6 Design
 
-Learn more at https://developers.google.com/idx/guides/customize-idx-env
+> /!\ WORK IN PROGRESS
+> Ts prob dont work yet, imma keep the page updated tho
+
+Story maker is a tool that generates a ready to post story of any movie, show, song, album or whatever so you can let everybody know your taste. Example here :
+![outputExample](images/laLaLand.png)
