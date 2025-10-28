@@ -9,14 +9,16 @@
     <h1>s4w6 story generator</h1>
     <p>A story maker that exports ready-to-post images for insta. Start now ↓</p>
     <hr>
+    <input type="file" id="imageUpload" accept="image">
     <input type="text" id="titleField" placeholder="Movie title" autocomplete="off">
     <input type="text" id="directorField" placeholder="Movie director" autocomplete="off">
     <div class="actors">
       <input type="text" id="actor1Field" placeholder="Starring actor 1" autocomplete="off">
       <input type="text" id="actor2Field" placeholder="Starring actor 2" autocomplete="off">
     </div>
+    <h2>Input content :</h2>
     <div id="canvas">
-      <h2>Input content :</h2>
+      <div id="image" style="width: 100px;height: 100px;"></div>
       <p style="display: none;"><span id="title"></p></p>
       <p style="display: none;">By <span id="director"></span></p>
       <div class="actors">
