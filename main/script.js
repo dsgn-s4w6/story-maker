@@ -20,10 +20,11 @@ function refreshOutputs(field, output){
 }
 
 function displayImage(input){
+    console.log("diplayed image")
     if(input.files && input.files[0]){
         var reader = new FileReader();
         reader.onload = function(e){
-            imageOutput.style.background = "url(\"e.target.result\")";
+            imageOutput.style.background = "url(\"" + e.target.result + "\")";
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -33,4 +34,4 @@ titleField.addEventListener("input", function(){refreshOutputs(titleField, title
 directorField.addEventListener("input", function(){refreshOutputs(directorField, directorOutput)});
 actor1Field.addEventListener("input", function(){refreshOutputs(actor1Field, actor1Output)});
 actor2Field.addEventListener("input", function(){refreshOutputs(actor2Field, actor2Output)});
-imageUpload.addEventListener("upload", function(){displayImage(this)});
+imageUpload.addEventListener("change", function(){displayImage(this)});
