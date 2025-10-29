@@ -1,13 +1,21 @@
+@font-face {
+    font-family: "Clash Display Variable-";
+    src: url(fonts/ClashDisplay-Variable.ttf) format("truetype");
+}
+
 #canvas{
     width: 1080px;
     height: 1920px;
-    background-color: aliceblue;
+    background-color: red;
+    display: flex;
+    padding: 190px 180px 64px 180px;
 
     #image{
-        width: 824px;
-        height: 1221px;
+        width: fill;
+        aspect-ratio: 9/16;
+        border-radius: 64px;
         background: url("");
         background-position: center;
-        background-size: contain;
+        background-size: cover;
     }
 }
