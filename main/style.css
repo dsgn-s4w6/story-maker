@@ -4,18 +4,71 @@
 }
 
 #canvas{
-    width: 1080px;
-    height: 1920px;
-    background-color: red;
+    width: 540px;
+    height: 960px;
+    border: solid tomato;
+    background-color: aliceblue;
     display: flex;
-    padding: 190px 180px 64px 180px;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 95px 64px 32px 64px;
+    
+    p{
+        height: fit-content;
+        margin: 0;
+        font-family: "Clash Display Variable";
+        color: hsl(239, 40%, 60%);
+        text-box-trim: trim-both;
+    }
+
+    .emphasized{
+        color: hsl(239, 50%, 40%);
+    }
+
+    .watermark{
+        text-align: center;
+        margin-bottom: 4px;
+        font-weight: 450;
+    }
 
     #image{
-        width: fill;
-        aspect-ratio: 9/16;
-        border-radius: 64px;
-        background: url("");
+        width: 100%;
+        border: solid 10px hsl(240, 25%, 45%);
+        box-sizing: border-box;
+        aspect-ratio: 0.67485667485;
+        border-radius: 40px;
         background-position: center;
         background-size: cover;
+        margin-bottom: 14px;
+        box-shadow: 
+            0 2px 12.5px 2.5px hsla(181, 20%, 20%, .5),
+            0 2.5px 5px 0px hsla(181, 20%, 20%, .2);
+    }
+
+    .info{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 40px;
+        font-weight: 700;
+        /* line-height: 40px; */
+
+        #title{
+            color: hsl(239, 25%, 10%);
+        }
+
+        .secondary{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+            font-weight: 525;
+            /* line-height: 25px; */
+
+            .actors{
+                display: flex;
+                flex-direction: row;
+            }
+        }
     }
 }
