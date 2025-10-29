@@ -1,0 +1,13 @@
+#canvas{
+    width: 1080px;
+    height: 1920px;
+    background-color: aliceblue;
+
+    #image{
+        width: 824px;
+        height: 1221px;
+        background: url("");
+        background-position: center;
+        background-size: contain;
+    }
+}
