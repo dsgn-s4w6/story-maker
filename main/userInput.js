@@ -9,25 +9,27 @@ const titleOutput = document.getElementById("title");
 const directorOutput = document.getElementById("director");
 const actor1Output = document.getElementById("actor1");
 const actor2Output = document.getElementById("actor2");
-const path1 = document.getElementById("path1")
-const path2 = document.getElementById("path2")
-const path3 = document.getElementById("path3")
-const path = document.getElementById("path")
+const chip = document.getElementById("chip");
+const path1 = document.getElementById("path1");
+const path2 = document.getElementById("path2");
+const path3 = document.getElementById("path3");
+const path = document.getElementById("path");
 const typeTextOutput = document.getElementById("typeOutput");
 
 function refreshOutputs(field, output){
     output.innerHTML = field.value;
     if(field.value == ""){
         output.parentNode.style.display = "none";
+        chip.style.display = "none";
     }
     else{
         output.parentNode.style.display = "block";
+        chip.style.display = "flex";
     }
 }
 
 function displayImage(input){
     imageOutput.style.display = "block";
-    console.log("diplayed image")
     if(input.files && input.files[0]){
         var reader = new FileReader();
         reader.onload = function(e){

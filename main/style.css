@@ -6,8 +6,11 @@
 #canvas{
     width: 540px;
     height: 960px;
-    border: solid tomato;
+    position: relative;
+
     background-color: aliceblue;
+    border: solid tomato;
+
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -71,7 +74,7 @@
             }
         }
 
-        .chip{
+        #chip{
             height: 22px;
             width: fit-content;
 
@@ -102,6 +105,8 @@
 
     .logo{
         position: absolute;
-        bottom: 0px;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
