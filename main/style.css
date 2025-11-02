@@ -18,6 +18,7 @@
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
     padding: 80px 64px 32px 64px;
     
@@ -43,7 +44,6 @@
         width: 100%;
         margin: 0 -10px 4px -10px;
         border: solid 10px hsl(var(--vibrant-h), 25%, 45%);
-        box-sizing: border-box;
         aspect-ratio: 0.67485667485;
         border-radius: 40px;
         background-position: center;
