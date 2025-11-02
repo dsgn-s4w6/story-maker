@@ -11,20 +11,22 @@
     <h1>s4w6 story generator</h1>
     <p>A story maker that exports ready-to-post images for insta. Start now ↓</p>
     <hr>
-    <input type="file" id="imageUpload" accept="image">
-    <input type="text" id="titleField" placeholder="Movie title" autocomplete="off">
-    <input type="text" id="directorField" placeholder="Movie director" autocomplete="off">
-    <div class="actors">
-      <input type="text" id="actor1Field" placeholder="Starring actor 1" autocomplete="off">
-      <input type="text" id="actor2Field" placeholder="Starring actor 2" autocomplete="off">
+    <div class="userInput">
+      <input type="file" id="imageUpload" accept="image">
+      <input type="text" id="titleField" placeholder="Movie title" autocomplete="off">
+      <input type="text" id="directorField" placeholder="Movie director" autocomplete="off">
+      <div class="actors">
+        <input type="text" id="actor1Field" placeholder="Starring actor 1" autocomplete="off">
+        <input type="text" id="actor2Field" placeholder="Starring actor 2" autocomplete="off">
+      </div>
+      <select name="type" id="type">
+        <option value="movie">Movie</option>
+        <option value="show">Show</option>
+      </select>
+      <button id="colorModeVibrant">Vibrant</button>
+      <button id="colorModeDominant">Dominant</button>
+      <button id="exportButton">Export Story</button>
     </div>
-    <select name="type" id="type">
-      <option value="movie">Movie</option>
-      <option value="show">Show</option>
-    </select>
-    <button id="colorModeVibrant">Vibrant</button>
-    <button id="colorModeDominant">Dominant</button>
-    <button id="exportButton">Export Story</button>
     <h2>Input content :</h2>
     <div id="canvas">
       <p class="watermark">Made on <span class="emphasized">story.s4w6.fr</span></p>
