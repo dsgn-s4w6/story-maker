@@ -3,12 +3,17 @@
     src: url(fonts/ClashDisplay-Variable.ttf) format("truetype");
 }
 
+/* *{
+    background-color: black;
+    color: white;
+} */
+
 #canvas{
     width: 540px;
     height: 960px;
     position: relative;
 
-    background-color: linear-gradient(hsl(var(--vibrant-h), 100%, 97%), hsl(var(--vibrant-h), 100%, 90%));
+    background: linear-gradient(hsl(var(--vibrant-h), 100%, 97%), hsl(var(--vibrant-h), 100%, 90%));
     /* border: solid tomato; */
 
     display: flex;

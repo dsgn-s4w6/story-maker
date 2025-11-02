@@ -1,5 +1,15 @@
-// Get reference to the image upload input
+// Get references to elements
 const imageUpload = document.getElementById("imageUpload");
+const vibrantButton = document.getElementById("colorModeVibrant");
+const dominantButton = document.getElementById("colorModeDominant");
+
+// Store both extracted colors
+let extractedColors = {
+    vibrant: null,
+    dominant: null
+};
+
+let currentMode = 'vibrant'; // Default mode
 
 /**
  * Converts RGB color values to HSL (Hue, Saturation, Lightness)
@@ -41,17 +51,44 @@ function rgbToHsl(r, g, b) {
 }
 
 /**
- * Extracts the most vibrant color from an uploaded image
- * A vibrant color has high saturation and medium lightness
+ * Applies the selected color mode to CSS variables
+ * 
+ * @param {string} mode - Either 'vibrant' or 'dominant'
+ */
+function applyColorMode(mode) {
+    currentMode = mode;
+    
+    const color = extractedColors[mode];
+    if (!color) return;
+    
+    // Update CSS variables
+    document.documentElement.style.setProperty(
+        '--vibrant-color', 
+        `hsl(${color.h}, ${color.s}%, ${color.l}%)`
+    );
+    document.documentElement.style.setProperty('--vibrant-h', color.h);
+    document.documentElement.style.setProperty('--vibrant-s', `${color.s}%`);
+    document.documentElement.style.setProperty('--vibrant-l', `${color.l}%`);
+    
+    // Update button states (add 'active' class to show which is selected)
+    vibrantButton.classList.toggle('active', mode === 'vibrant');
+    dominantButton.classList.toggle('active', mode === 'dominant');
+    
+    console.log(`Color mode switched to: ${mode}`, {
+        hsl: `hsl(${color.h}, ${color.s}%, ${color.l}%)`,
+        rgb: `rgb(${color.r}, ${color.g}, ${color.b})`
+    });
+}
+
+/**
+ * Extracts both vibrant and dominant colors from an uploaded image
  * 
  * @param {File} file - The uploaded image file
  */
-function extractVibrantColor(file) {
-    // Create a FileReader to read the image file
+function extractColors(file) {
     const reader = new FileReader();
     
     reader.onload = function(e) {
-        // Create an Image element to load the file
         const img = new Image();
         
         img.onload = function() {
@@ -59,7 +96,7 @@ function extractVibrantColor(file) {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             
-            // Set canvas size (we can use a smaller size for faster processing)
+            // Set canvas size (smaller for faster processing)
             const maxSize = 100;
             const scale = Math.min(maxSize / img.width, maxSize / img.height);
             canvas.width = img.width * scale;
@@ -68,77 +105,140 @@ function extractVibrantColor(file) {
             // Draw the image on the canvas
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             
-            // Get all pixel data from the canvas
+            // Get all pixel data
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const pixels = imageData.data; // Array of [R, G, B, A, R, G, B, A, ...]
+            const pixels = imageData.data;
             
+            // --- EXTRACT VIBRANT COLOR ---
             let mostVibrantColor = { r: 0, g: 0, b: 0 };
             let highestVibrancy = 0;
             
-            // Loop through every 4th value (since each pixel is 4 values: R, G, B, A)
-            // We sample every 10 pixels to speed up processing
+            // --- EXTRACT DOMINANT COLOR ---
+            // Group similar colors together by rounding RGB values
+            const colorBuckets = {};
+            
+            // Sample pixels (every 10th pixel)
             for (let i = 0; i < pixels.length; i += 40) {
                 const r = pixels[i];
                 const g = pixels[i + 1];
                 const b = pixels[i + 2];
-                const a = pixels[i + 3]; // Alpha (transparency)
+                const a = pixels[i + 3];
                 
                 // Skip transparent pixels
                 if (a < 128) continue;
                 
-                // Convert to HSL to measure vibrancy
+                // === VIBRANT COLOR CALCULATION ===
                 const hsl = rgbToHsl(r, g, b);
                 
-                // Calculate "vibrancy score"
-                // We want high saturation (s) and medium lightness (l between 30-70)
-                const lightnessScore = 100 - Math.abs(hsl.l - 50); // Peaks at l=50
-                const vibrancy = hsl.s * (lightnessScore / 100);
+                // Skip very dark or very light colors for vibrancy
+                if (hsl.l < 15 || hsl.l > 85) {
+                    // Don't add to vibrancy candidates
+                } else {
+                    // Calculate "vibrancy score"
+                    const lightnessScore = 100 - Math.abs(hsl.l - 50);
+                    const vibrancy = hsl.s * (lightnessScore / 100);
+                    
+                    if (vibrancy > highestVibrancy) {
+                        highestVibrancy = vibrancy;
+                        mostVibrantColor = { r, g, b };
+                    }
+                }
                 
-                // Keep track of the most vibrant color found
-                if (vibrancy > highestVibrancy) {
-                    highestVibrancy = vibrancy;
-                    mostVibrantColor = { r, g, b };
+                // === DOMINANT COLOR CALCULATION ===
+                // Round RGB to nearest 20 to group similar colors
+                const bucketR = Math.round(r / 20) * 20;
+                const bucketG = Math.round(g / 20) * 20;
+                const bucketB = Math.round(b / 20) * 20;
+                const key = `${bucketR},${bucketG},${bucketB}`;
+                
+                if (!colorBuckets[key]) {
+                    colorBuckets[key] = {
+                        count: 0,
+                        r: bucketR,
+                        g: bucketG,
+                        b: bucketB
+                    };
+                }
+                colorBuckets[key].count++;
+            }
+            
+            // Find the most common color (dominant)
+            let mostDominantColor = { r: 0, g: 0, b: 0 };
+            let highestCount = 0;
+            
+            for (const key in colorBuckets) {
+                const bucket = colorBuckets[key];
+                
+                // Skip very dark or very light colors
+                const hsl = rgbToHsl(bucket.r, bucket.g, bucket.b);
+                if (hsl.l < 10 || hsl.l > 90) continue;
+                
+                if (bucket.count > highestCount) {
+                    highestCount = bucket.count;
+                    mostDominantColor = {
+                        r: bucket.r,
+                        g: bucket.g,
+                        b: bucket.b
+                    };
                 }
             }
             
-            // Convert the most vibrant color to HSL for final output
+            // Store both colors with their HSL values
             const vibrantHSL = rgbToHsl(
-                mostVibrantColor.r, 
-                mostVibrantColor.g, 
+                mostVibrantColor.r,
+                mostVibrantColor.g,
                 mostVibrantColor.b
             );
             
-            // Store the color in CSS custom properties (variables)
-            // You can now use these in your CSS!
-            document.documentElement.style.setProperty(
-                '--vibrant-color', 
-                `hsl(${vibrantHSL.h}, ${vibrantHSL.s}%, ${vibrantHSL.l}%)`
+            const dominantHSL = rgbToHsl(
+                mostDominantColor.r,
+                mostDominantColor.g,
+                mostDominantColor.b
             );
             
-            // Also store individual HSL values if you need them
-            document.documentElement.style.setProperty('--vibrant-h', vibrantHSL.h);
-            document.documentElement.style.setProperty('--vibrant-s', `${vibrantHSL.s}%`);
-            document.documentElement.style.setProperty('--vibrant-l', `${vibrantHSL.l}%`);
+            extractedColors.vibrant = {
+                ...mostVibrantColor,
+                ...vibrantHSL
+            };
             
-            // Log the result for debugging
-            console.log('Vibrant color extracted:', {
-                hsl: `hsl(${vibrantHSL.h}, ${vibrantHSL.s}%, ${vibrantHSL.l}%)`,
-                rgb: `rgb(${mostVibrantColor.r}, ${mostVibrantColor.g}, ${mostVibrantColor.b})`
+            extractedColors.dominant = {
+                ...mostDominantColor,
+                ...dominantHSL
+            };
+            
+            // Apply the current mode (default: vibrant)
+            applyColorMode(currentMode);
+            
+            // Log both colors for debugging
+            console.log('Colors extracted:', {
+                vibrant: {
+                    hsl: `hsl(${vibrantHSL.h}, ${vibrantHSL.s}%, ${vibrantHSL.l}%)`,
+                    rgb: `rgb(${mostVibrantColor.r}, ${mostVibrantColor.g}, ${mostVibrantColor.b})`
+                },
+                dominant: {
+                    hsl: `hsl(${dominantHSL.h}, ${dominantHSL.s}%, ${dominantHSL.l}%)`,
+                    rgb: `rgb(${mostDominantColor.r}, ${mostDominantColor.g}, ${mostDominantColor.b})`
+                }
             });
         };
         
-        // Set the image source to the uploaded file
         img.src = e.target.result;
     };
     
-    // Read the file as a data URL (base64 encoded string)
     reader.readAsDataURL(file);
 }
 
-// Listen for when the user uploads an image
+// Event Listeners
 imageUpload.addEventListener("change", function() {
     if (this.files && this.files[0]) {
-        // Extract vibrant color from the uploaded image
-        extractVibrantColor(this.files[0]);
+        extractColors(this.files[0]);
     }
+});
+
+vibrantButton.addEventListener("click", function() {
+    applyColorMode('vibrant');
+});
+
+dominantButton.addEventListener("click", function() {
+    applyColorMode('dominant');
 });
