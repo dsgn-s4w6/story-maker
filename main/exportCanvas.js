@@ -6,6 +6,15 @@ async function exportCanvasAsPNG() {
     const domtoimage = (await import('https://cdn.jsdelivr.net/npm/dom-to-image-more@3.3.0/+esm')).default;
     
     try {
+        // Store original border-radius
+        const originalBorderRadius = canvas.style.borderRadius;
+        
+        // Temporarily remove border-radius for export
+        canvas.style.borderRadius = '0';
+        
+        // Small delay to ensure style is applied
+        await new Promise(resolve => setTimeout(resolve, 10));
+        
         // Capture at 2x scale
         const blob = await domtoimage.toBlob(canvas, {
             width: 540 * 2,
@@ -14,9 +23,13 @@ async function exportCanvasAsPNG() {
                 transform: 'scale(2)',
                 transformOrigin: 'top left',
                 width: '540px',
-                height: '960px'
+                height: '960px',
+                borderRadius: '0' // Ensure no border-radius in export
             }
         });
+        
+        // Restore original border-radius
+        canvas.style.borderRadius = originalBorderRadius;
         
         // Download
         const url = URL.createObjectURL(blob);
@@ -27,6 +40,8 @@ async function exportCanvasAsPNG() {
         URL.revokeObjectURL(url);
     } catch (error) {
         console.error('Export failed:', error);
+        // Restore border-radius even if export fails
+        canvas.style.borderRadius = originalBorderRadius || '';
     }
 }
 

@@ -1,6 +1,6 @@
 const imageUpload = document.getElementById("imageUpload");
-const vibrantButton = document.getElementById("colorModeVibrant");
-const dominantButton = document.getElementById("colorModeDominant");
+const vibrantRadio = document.getElementById("colorModeVibrant");
+const dominantRadio = document.getElementById("colorModeDominant");
 
 let extractedColors = {
     vibrant: null,
@@ -48,31 +48,58 @@ function rgbToHsl(r, g, b) {
 }
 
 /**
- * Applies the selected color mode to CSS variables
- * 
- * @param {string} mode - Either 'vibrant' or 'dominant'
+ * Applies both vibrant and dominant colors to CSS variables
+ * Also sets the "active" color based on the selected mode
  */
 function applyColorMode(mode) {
     currentMode = mode;
     
-    const color = extractedColors[mode];
-    if (!color) return;
+    // Set vibrant color variables
+    if (extractedColors.vibrant) {
+        const vibrant = extractedColors.vibrant;
+        document.documentElement.style.setProperty(
+            '--vibrant-color', 
+            `hsl(${vibrant.h}, ${vibrant.s}%, ${vibrant.l}%)`
+        );
+        document.documentElement.style.setProperty('--vibrant-h', vibrant.h);
+        document.documentElement.style.setProperty('--vibrant-s', `${vibrant.s}%`);
+        document.documentElement.style.setProperty('--vibrant-l', `${vibrant.l}%`);
+    }
     
-    document.documentElement.style.setProperty(
-        '--vibrant-color', 
-        `hsl(${color.h}, ${color.s}%, ${color.l}%)`
-    );
-    document.documentElement.style.setProperty('--vibrant-h', color.h);
-    document.documentElement.style.setProperty('--vibrant-s', `${color.s}%`);
-    document.documentElement.style.setProperty('--vibrant-l', `${color.l}%`);
+    // Set dominant color variables
+    if (extractedColors.dominant) {
+        const dominant = extractedColors.dominant;
+        document.documentElement.style.setProperty(
+            '--dominant-color', 
+            `hsl(${dominant.h}, ${dominant.s}%, ${dominant.l}%)`
+        );
+        document.documentElement.style.setProperty('--dominant-h', dominant.h);
+        document.documentElement.style.setProperty('--dominant-s', `${dominant.s}%`);
+        document.documentElement.style.setProperty('--dominant-l', `${dominant.l}%`);
+    }
     
-    // Update button states (add 'active' class to show which is selected)
-    vibrantButton.classList.toggle('active', mode === 'vibrant');
-    dominantButton.classList.toggle('active', mode === 'dominant');
+    // Set "active" variables based on selected mode
+    const activeColor = extractedColors[mode];
+    if (activeColor) {
+        document.documentElement.style.setProperty(
+            '--active-color', 
+            `hsl(${activeColor.h}, ${activeColor.s}%, ${activeColor.l}%)`
+        );
+        document.documentElement.style.setProperty('--active-h', activeColor.h);
+        document.documentElement.style.setProperty('--active-s', `${activeColor.s}%`);
+        document.documentElement.style.setProperty('--active-l', `${activeColor.l}%`);
+    }
     
     console.log(`Color mode switched to: ${mode}`, {
-        hsl: `hsl(${color.h}, ${color.s}%, ${color.l}%)`,
-        rgb: `rgb(${color.r}, ${color.g}, ${color.b})`
+        vibrant: extractedColors.vibrant ? {
+            hsl: `hsl(${extractedColors.vibrant.h}, ${extractedColors.vibrant.s}%, ${extractedColors.vibrant.l}%)`,
+            rgb: `rgb(${extractedColors.vibrant.r}, ${extractedColors.vibrant.g}, ${extractedColors.vibrant.b})`
+        } : 'not extracted yet',
+        dominant: extractedColors.dominant ? {
+            hsl: `hsl(${extractedColors.dominant.h}, ${extractedColors.dominant.s}%, ${extractedColors.dominant.l}%)`,
+            rgb: `rgb(${extractedColors.dominant.r}, ${extractedColors.dominant.g}, ${extractedColors.dominant.b})`
+        } : 'not extracted yet',
+        active: mode
     });
 }
 
@@ -204,16 +231,22 @@ function extractColors(file) {
     reader.readAsDataURL(file);
 }
 
+// Handle image upload
 imageUpload.addEventListener("change", function() {
     if (this.files && this.files[0]) {
         extractColors(this.files[0]);
     }
 });
 
-vibrantButton.addEventListener("click", function() {
-    applyColorMode('vibrant');
+// Handle radio button changes
+vibrantRadio.addEventListener("change", function() {
+    if (this.checked) {
+        applyColorMode('vibrant');
+    }
 });
 
-dominantButton.addEventListener("click", function() {
-    applyColorMode('dominant');
+dominantRadio.addEventListener("change", function() {
+    if (this.checked) {
+        applyColorMode('dominant');
+    }
 });

@@ -3,119 +3,283 @@
     src: url(fonts/ClashDisplay-Variable.ttf) format("truetype");
 }
 
-/* *{
-    background-color: black;
-    color: white;
-} */
-
-#canvas{
-    width: 540px;
-    height: 960px;
-    position: relative;
-
-    background: linear-gradient(hsl(var(--vibrant-h), 100%, 97%), hsl(var(--vibrant-h), 100%, 90%));
-    /* border: solid tomato; */
-
+p{
+    margin: 0;
+}
+body{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 80px 64px 32px 64px;
-    
-    p{
-        height: fit-content;
-        margin: 0;
-        font-family: "Clash Display Variable";
-        color: hsl(var(--vibrant-h), 40%, 60%);
-        text-box-trim: trim-both;
-    }
+    flex-direction: row;
+    gap: 32px;
+    background-color: hsl(var(--active-h), 65%, 15%);
+    margin: 0;
 
-    .emphasized{
-        color: hsl(var(--vibrant-h), 50%, 40%);
-    }
-
-    .watermark{
-        text-align: center;
-        margin-bottom: 4px;
-        font-weight: 450;
-    }
-
-    #image{
+    .userPanel{
+        height: 100vh;
         width: 100%;
-        margin: 0 -10px 4px -10px;
-        border: solid 10px hsl(var(--vibrant-h), 25%, 45%);
-        aspect-ratio: 0.67485667485;
-        border-radius: 40px;
-        background-position: center;
-        background-size: cover;
-        box-shadow: 
-            0 2px 12.5px 2.5px hsla(var(--vibrant-h), 20%, 20%, .5),
-            0 2.5px 5px 0px hsla(var(--vibrant-h), 20%, 20%, .2);
-    }
+        /* max-width: 1216px; */
+        border-radius: 0 48px 48px 0;
+        background-color: hsl(var(--active-h), 90%, 97%);
+        padding: 48px;
+        box-sizing: border-box;
 
-    .info{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        font-size: 40px;
-        font-weight: 700;
-        line-height: 40px;
-        text-wrap: balance;
+        .text{
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 64px;
 
-        #title{
-            color: hsl(var(--vibrant-h), 25%, 10%);
-            display: block;
-            width: 100%;
-            text-wrap: balance;
+            h1{
+                font-family: Clash Display Variable;
+                font-size: 52px;
+                text-box-trim: trim-both;
+                font-weight: 600;
+                color: hsl(var(--active-h), 60%, 15%);
+                margin: 0;
+            }
+
+            p{
+                font-family: Clash Display Variable;
+                font-size: 24px;
+                text-box-trim: trim-both;
+                font-weight: 500;
+                color: hsl(var(--active-h), 40%, 30%);
+                margin: 0;
+            }
         }
 
-        .secondary{
+        .userInput{
             width: 100%;
             display: flex;
             flex-direction: column;
-            font-size: 20px;
-            font-weight: 525;
-            line-height: 20px;
+            gap: 24px;
 
-            .actors{
+            #dropZone{
+                width: 100%;
+                height: 200px;
+                border: dashed 5px hsl(var(--active-h), 25%, 65%);
+                border-radius: 32px;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
+                gap: 16px;
+                align-content: center;
+                justify-content: center;
+                text-align: center;
+
+                .text{
+                    display: flex;
+                    gap: 8px;
+
+                    p{
+                        font-family: Clash Display Variable;
+                        font-size: 24px;
+                        text-box-trim: trim-both;
+                        font-weight: 500;
+                        color: hsl(var(--active-h), 30%, 40%);
+                    }
+
+                    p.secondary{
+                        font-family: Clash Display Variable;
+                        font-size: 20px;
+                        text-box-trim: trim-both;
+                        font-weight: 500;
+                        color: hsl(var(--active-h), 25%, 65%);
+                    }
+                }
+            }
+
+            .row{
+                display: flex;
+                gap: 8px;
+
+                .inputGroup{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+    
+                    p{
+                        font-family: Clash Display Variable;
+                        font-size: 16px;
+                        font-weight: 550;
+                        letter-spacing: 0.3px;
+                        color: hsl(var(--active-h), 40%, 30%);
+                        margin-left: 16px;
+    
+                    }
+    
+                    input[type=text]{
+                        height: 48px;
+                        border-radius: 16px;
+                        background-color: hsl(var(--active-h), 60%, 90%);
+                        border: hsl(var(--active-h), 55%, 30%) solid 3.5px;
+                        font-family: Clash Display Variable;
+                        font-size: 16px;
+                        font-weight: 500;
+                        letter-spacing: 0.3px;
+                    }
+    
+                    input[type=text]::placeholder{
+                        color: hsl(var(--active-h), 45%, 65%);
+                    }
+                }
+            }
+            
+            .inputGroup{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+
+                p{
+                    font-family: Clash Display Variable;
+                    font-size: 16px;
+                    font-weight: 550;
+                    letter-spacing: 0.3px;
+                    color: hsl(var(--active-h), 40%, 30%);
+                    margin-left: 16px;
+
+                }
+
+                input[type=text]{
+                    height: 48px;
+                    border-radius: 16px;
+                    background-color: hsl(var(--active-h), 60%, 90%);
+                    border: hsl(var(--active-h), 55%, 30%) solid 3.5px;
+                    font-family: Clash Display Variable;
+                    font-size: 16px;
+                    font-weight: 500;
+                    letter-spacing: 0.3px;
+                }
+
+                input[type=text]::placeholder{
+                    color: hsl(var(--active-h), 45%, 65%);
+                }
             }
         }
-
-        #chip{
-            height: 22px;
-            width: fit-content;
-
-            background: 
-                linear-gradient(hsl(var(--vibrant-h), 75%, 95%), hsl(var(--vibrant-h), 60%, 85%)) padding-box,
-                linear-gradient(hsl(var(--vibrant-h), 60%, 70%), hsl(var(--vibrant-h), 60%, 80%)) border-box;
-            border: 4px solid transparent;
-            border-radius: 10px;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 8px 4px 4px;
-            margin-top: 4px;
-
-            box-shadow: 
-                0 0 7.5px hsla(0, 0%, 0%, .1),
-                0 0 5px hsla(0, 0%, 0%, .1);
-
-            p{
-                font-size: 14px;
-                font-weight: 600;
-                color: hsl(var(--vibrant-h), 75%, 35%);
-            }
-        } 
     }
 
-    .logo{
-        position: absolute;
-        bottom: 16px;
-        left: 50%;
-        transform: translateX(-50%);
+    .previewPanel{
+        height: 100vh;
+        width: fit-content;
+        padding-right: 32px;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-end;
+        justify-content: center;
+        background-color: none;
+        user-select: none;
+
+        #canvas{
+            width: 540px;
+            height: 960px;
+            position: relative;
+            border-radius: 48px;
+
+            background: linear-gradient(hsl(var(--active-h), 100%, 97%), hsl(var(--active-h), 100%, 90%));
+            /* border: solid tomato; */
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 80px 64px 32px 64px;
+            
+            p{
+                height: fit-content;
+                margin: 0;
+                font-family: "Clash Display Variable";
+                color: hsl(var(--active-h), 40%, 60%);
+                text-box-trim: trim-both;
+            }
+
+            .emphasized{
+                color: hsl(var(--active-h), 50%, 40%);
+            }
+
+            .watermark{
+                text-align: center;
+                margin-bottom: 4px;
+                font-weight: 450;
+            }
+
+            #image{
+                width: 100%;
+                margin: 0 -10px 4px -10px;
+                border: solid 10px hsl(var(--active-h), 25%, 45%);
+                aspect-ratio: 0.67485667485;
+                border-radius: 40px;
+                background-position: center;
+                background-size: cover;
+                box-shadow: 
+                    0 2px 12.5px 2.5px hsla(var(--active-h), 20%, 20%, .5),
+                    0 2.5px 5px 0px hsla(var(--active-h), 20%, 20%, .2);
+            }
+
+            .info{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                font-size: 40px;
+                font-weight: 700;
+                line-height: 40px;
+                text-wrap: balance;
+
+                #title{
+                    color: hsl(var(--active-h), 25%, 10%);
+                    display: block;
+                    width: 100%;
+                    text-wrap: balance;
+                }
+
+                .secondary{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 20px;
+                    font-weight: 525;
+                    line-height: 20px;
+
+                    .actors{
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+
+                #chip{
+                    height: 22px;
+                    width: fit-content;
+
+                    background: 
+                        linear-gradient(hsl(var(--active-h), 75%, 95%), hsl(var(--active-h), 60%, 85%)) padding-box,
+                        linear-gradient(hsl(var(--active-h), 60%, 70%), hsl(var(--active-h), 60%, 80%)) border-box;
+                    border: 4px solid transparent;
+                    border-radius: 10px;
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 4px;
+                    padding: 4px 8px 4px 4px;
+                    margin-top: 4px;
+
+                    box-shadow: 
+                        0 0 7.5px hsla(0, 0%, 0%, .1),
+                        0 0 5px hsla(0, 0%, 0%, .1);
+
+                    p{
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: hsl(var(--active-h), 75%, 35%);
+                    }
+                } 
+            }
+
+            .logo{
+                position: absolute;
+                bottom: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
     }
 }
