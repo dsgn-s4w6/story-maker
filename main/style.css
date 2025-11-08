@@ -213,7 +213,7 @@ body{
                 margin: 0 -10px 4px -10px;
                 border: solid 10px hsl(var(--active-h), 25%, 45%);
                 aspect-ratio: 0.67485667485;
-                /* border-radius: 40px; */
+                border-radius: 40px;
                 background-position: center;
                 background-size: cover;
                 box-shadow: 
