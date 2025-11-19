@@ -16,7 +16,7 @@ body{
     .userPanel{
         height: 100vh;
         width: 100%;
-        /* max-width: 1216px; */
+        max-width: 60vw;
         border-radius: 0 48px 48px 0;
         background-color: hsl(var(--active-h), 90%, 97%);
         padding: 48px;
@@ -114,11 +114,11 @@ body{
                         gap: 2px;
 
                         .icon{
-                            width: 48px;
-                            height: 48px;
+                            width: 56px;
+                            /* box-sizing: content-box; */
                             border-radius: 16px 4px 4px 16px;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 55%, 30%) solid 3.5px;
+                            border: hsl(var(--active-h), 55%, 30%) solid 3px;
                             display: flex;
                             flex-direction: row;
                             gap: 2px;
@@ -136,7 +136,7 @@ body{
                             height: 48px;
                             border-radius: 4px 16px 16px 4px;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 55%, 30%) solid 3.5px;
+                            border: hsl(var(--active-h), 55%, 30%) solid 3px;
                             font-family: Clash Display Variable;
                             font-size: 16px;
                             font-weight: 500;
@@ -148,10 +148,12 @@ body{
                         }
 
                         select{
-                            height: 48px;
-                            border-radius: 16px;
+                            aspect-ratio: 1;
+                            box-sizing: border-box;
+                            height: 56px;
+                            border-radius: 4px 16px 16px 4px;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 55%, 30%) solid 3.5px;
+                            border: hsl(var(--active-h), 55%, 30%) solid 3px;
                             font-family: Clash Display Variable;
                             font-size: 16px;
                             font-weight: 500;
@@ -164,20 +166,24 @@ body{
     }
 
     .previewPanel{
-        height: 100vh;
         width: fit-content;
-        padding-right: 32px;
+        height: 100vh;
+        
+        background-color: none;
+        user-select: none;
+
         display: flex;
+        padding: 48px 0 48px 0;
+        box-sizing: border-box;
         flex-direction: column;
         align-content: flex-end;
         justify-content: center;
-        background-color: none;
-        user-select: none;
+        padding-right: 32px;
         /* overflow-y: scroll; */
 
         #canvas{
-            width: 540px;
-            height: 960px;
+            height: 90vh;
+            aspect-ratio: 9/16;
             position: relative;
             border-radius: 48px;
 
@@ -192,10 +198,13 @@ body{
             
             p{
                 height: fit-content;
-                margin: 0;
-                font-family: "Clash Display Variable";
+
                 color: hsl(var(--active-h), 40%, 60%);
+
+                font-family: "Clash Display Variable";
                 text-box-trim: trim-both;
+
+                margin: 0;
             }
 
             .emphasized{
@@ -203,19 +212,25 @@ body{
             }
 
             .watermark{
-                text-align: center;
-                margin-bottom: 4px;
+                font-size: 12px;
                 font-weight: 450;
+                text-align: center;
+
+                margin-bottom: 4px;
             }
 
             #image{
                 width: 100%;
-                margin: 0 -10px 4px -10px;
-                border: solid 10px hsl(var(--active-h), 25%, 45%);
-                aspect-ratio: 0.67485667485;
+                /* height: 610.5px; */
                 border-radius: 40px;
+                aspect-ratio: 0.67485667485;
+
+                border: solid 10px hsl(var(--active-h), 25%, 45%);
                 background-position: center;
                 background-size: cover;
+
+                margin: 0 -10px 4px -10px;
+
                 box-shadow: 
                     0 2px 12.5px 2.5px hsla(var(--active-h), 20%, 20%, .5),
                     0 2.5px 5px 0px hsla(var(--active-h), 20%, 20%, .2);
@@ -223,18 +238,23 @@ body{
 
             .info{
                 width: 100%;
-                display: flex;
-                flex-direction: column;
-                font-size: 40px;
+
+                font-size: 5rem;
                 font-weight: 700;
-                line-height: 40px;
+                line-height: 5rem;
                 text-wrap: balance;
 
+                display: flex;
+                flex-direction: column;
+
                 #title{
-                    color: hsl(var(--active-h), 25%, 10%);
-                    display: block;
                     width: 100%;
+
                     text-wrap: balance;
+
+                    color: hsl(var(--active-h), 25%, 10%);
+
+                    display: block;
                 }
 
                 .secondary{
