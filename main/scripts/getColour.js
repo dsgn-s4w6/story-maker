@@ -1,4 +1,4 @@
-const imageUpload = document.getElementById("imageUpload");
+const imgUpload = document.getElementById("imageUpload");
 const vibrantRadio = document.getElementById("colorModeVibrant");
 const dominantRadio = document.getElementById("colorModeDominant");
 

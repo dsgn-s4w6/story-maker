@@ -9,29 +9,29 @@ p{
 body{
     display: flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 1.7vw;
     background-color: hsl(var(--active-h), 65%, 15%);
     margin: 0;
 
     .userPanel{
         height: 100vh;
         width: 100%;
-        max-width: 60vw;
-        border-radius: 0 48px 48px 0;
+        max-width: 55vw;
+        border-radius: 0 2.8vw 2.8vw 0;
         background-color: hsl(var(--active-h), 90%, 97%);
-        padding: 48px;
+        padding: 2.8vw;
         box-sizing: border-box;
         /* overflow-y: scroll; */
 
         .text{
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            margin-bottom: 64px;
+            gap: .25vw;
+            margin-bottom: 4vw;
 
             h1{
                 font-family: Clash Display Variable;
-                font-size: 52px;
+                font-size: 3.25vw;
                 text-box-trim: trim-both;
                 font-weight: 600;
                 color: hsl(var(--active-h), 60%, 15%);
@@ -40,7 +40,7 @@ body{
 
             p{
                 font-family: Clash Display Variable;
-                font-size: 24px;
+                font-size: 1.5vw;
                 text-box-trim: trim-both;
                 font-weight: 500;
                 color: hsl(var(--active-h), 40%, 30%);
@@ -52,27 +52,29 @@ body{
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 1.5vw;
 
             #dropZone{
                 width: 100%;
-                height: 200px;
-                border: dashed 5px hsl(var(--active-h), 25%, 65%);
-                border-radius: 32px;
+                height: 12.5vw;
+                border: dashed 0.3125vw hsl(var(--active-h), 25%, 65%);
+                border-radius: 2vw;
                 display: flex;
                 flex-direction: column;
-                gap: 16px;
-                align-content: center;
+                gap: 1vw;
+                flex-wrap: wrap;
+                align-items: center;
                 justify-content: center;
                 text-align: center;
 
                 .text{
                     display: flex;
-                    gap: 8px;
+                    gap: 0.5vw;
+                    margin: 0;
 
                     p{
                         font-family: Clash Display Variable;
-                        font-size: 24px;
+                        font-size: 1.5vw;
                         text-box-trim: trim-both;
                         font-weight: 500;
                         color: hsl(var(--active-h), 30%, 40%);
@@ -80,11 +82,15 @@ body{
 
                     p.secondary{
                         font-family: Clash Display Variable;
-                        font-size: 20px;
+                        font-size: 1.25vw;
                         text-box-trim: trim-both;
                         font-weight: 500;
                         color: hsl(var(--active-h), 25%, 65%);
                     }
+                }
+
+                input{
+                    display: none;
                 }
             }
 
@@ -96,51 +102,51 @@ body{
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: 2px;
+                    gap: 0.125vw;
     
                     p{
                         font-family: Clash Display Variable;
-                        font-size: 16px;
+                        font-size: .9vw;
                         font-weight: 550;
-                        letter-spacing: 0.3px;
+                        letter-spacing: 0.0187vw;
                         color: hsl(var(--active-h), 40%, 30%);
-                        margin-left: 8px;
+                        margin-left: 0.5vw;
     
                     }
                     
                     .field{
                         display: flex;
                         flex-direction: row;
-                        gap: 2px;
+                        gap: 0.125vw;
 
                         .icon{
-                            width: 56px;
-                            /* box-sizing: content-box; */
-                            border-radius: 16px 4px 4px 16px;
+                            width: 3.5vw;
+                            border-radius: 1vw 0.25vw 0.25vw 1vw;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 55%, 30%) solid 3px;
+                            border: hsl(var(--active-h), 55%, 30%) solid 0.1875vw;
                             display: flex;
                             flex-direction: row;
-                            gap: 2px;
+                            gap: 0.125vw;
                             flex-wrap: wrap;
                             align-content: center;
                             justify-content: center;
 
                             span{
+                                font-size: 1.5vw;
                                 color: hsl(var(--active-h), 45, 40)
                             }
                         }
 
                         input[type=text]{
                             width: 100%;
-                            height: 48px;
-                            border-radius: 4px 16px 16px 4px;
+                            height: 3vw;
+                            border-radius: 0.25vw 1vw 1vw 0.25vw;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 55%, 30%) solid 3px;
+                            border: hsl(var(--active-h), 55%, 30%) solid 0.1875vw;
                             font-family: Clash Display Variable;
-                            font-size: 16px;
+                            font-size: .9vw;
                             font-weight: 500;
-                            letter-spacing: 0.3px;
+                            letter-spacing: 0.0187vw;
                         }
         
                         input[type=text]::placeholder{
@@ -150,14 +156,14 @@ body{
                         select{
                             aspect-ratio: 1;
                             box-sizing: border-box;
-                            height: 56px;
-                            border-radius: 4px 16px 16px 4px;
+                            height: 3.5vw;
+                            border-radius: 0.25vw 1vw 1vw 0.25vw;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 55%, 30%) solid 3px;
+                            border: hsl(var(--active-h), 55%, 30%) solid 0.1875vw;
                             font-family: Clash Display Variable;
-                            font-size: 16px;
+                            font-size: .9vw;
                             font-weight: 500;
-                            letter-spacing: 0.3px;
+                            letter-spacing: 0.0187vw;
                         }
                     }
                 }
@@ -178,7 +184,7 @@ body{
         flex-direction: column;
         align-content: flex-end;
         justify-content: center;
-        padding-right: 32px;
+        padding-right: 2vw;
         /* overflow-y: scroll; */
 
         #canvas{
