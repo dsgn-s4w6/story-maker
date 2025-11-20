@@ -9,51 +9,45 @@ async function exportCanvasAsPNG() {
         exportButton.disabled = true;
         exportButton.innerHTML = '<span class="material-symbols-rounded">pending</span>Exporting...';
         
-        // Store and remove border-radius
+        // Store original styles
         const originalBorderRadius = canvas.style.borderRadius;
+        const originalBoxShadow = canvas.style.boxShadow;
+        
+        // Remove visual effects that don't export well
         canvas.style.borderRadius = '0';
+        canvas.style.boxShadow = 'none';
         
-        // Small delay to ensure style is applied
-        await new Promise(resolve => setTimeout(resolve, 10));
+        // Wait for styles to apply
+        await new Promise(resolve => setTimeout(resolve, 50));
         
-        // Calculate actual padding in pixels for 1920px height
-        // Your CSS: padding: 8.33vh 6.67vh 3.33vh 6.67vh
-        const targetHeight = 1920;
-        const targetWidth = 1080;
-        const paddingTop = 190;
-        const paddingRight = 128;
-        const paddingBottom = 64;
-        const paddingLeft = 128;
+        // Force reflow
+        canvas.offsetHeight;
         
-        // Capture at 2x scale for quality
+        // Capture at approximately 2x resolution for better quality
+        // 461*812 base -> ~922*1624 (or we can target exact 1080*1920)
+        const scaleFactor = 1080 / 461; // ~2.34x scale to reach 1080px width
+        
         const blob = await domtoimage.toBlob(canvas, {
-            width: targetWidth * 2,
-            height: targetHeight * 2,
+            width: canvas.offsetWidth * scaleFactor,
+            height: canvas.offsetHeight * scaleFactor,
             style: {
-                transform: 'scale(2)',
+                transform: `scale(${scaleFactor})`,
                 transformOrigin: 'top left',
-                width: `${targetWidth}px`,
-                height: `${targetHeight}px`,
-                borderRadius: '0',
-                boxShadow: 'none',
-                padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                position: 'relative'
+                width: canvas.offsetWidth + 'px',
+                height: canvas.offsetHeight + 'px'
             },
             quality: 1.0,
             cacheBust: true
         });
         
-        // Restore original border-radius
+        // Restore original styles
         canvas.style.borderRadius = originalBorderRadius;
+        canvas.style.boxShadow = originalBoxShadow;
         
         // Download
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.download = 'story.png';
+        link.download = `story-${Date.now()}.png`;
         link.href = url;
         link.click();
         URL.revokeObjectURL(url);
@@ -62,11 +56,15 @@ async function exportCanvasAsPNG() {
         exportButton.innerHTML = originalButtonHTML;
         exportButton.disabled = false;
         
+        console.log('Export successful! Resolution: ~1080x1920');
+        
     } catch (error) {
         console.error('Export failed:', error);
         canvas.style.borderRadius = originalBorderRadius || '';
+        canvas.style.boxShadow = originalBoxShadow || '';
         exportButton.innerHTML = '<span class="material-symbols-rounded">output_circle</span>Export Story';
         exportButton.disabled = false;
+        alert('Export failed. Check console for details.');
     }
 }
 

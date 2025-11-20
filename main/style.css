@@ -134,7 +134,7 @@ body{
                             align-content: center;
                             justify-content: center;
                             user-select: none;
-                            transition: ease-out 150ms;
+                            transition: box-shadow,border-color ease-out 150ms;
 
                             span{
                                 font-size: 1.3vw;
@@ -154,12 +154,16 @@ body{
                             font-weight: 500;
                             letter-spacing: 0.0187vw;
                             color: hsl(var(--active-h), 45%, 40%);
-                            transition: ease-out 150ms;
+                            transition: box-shaow,border-color ease-out 150ms;
                             padding: 0 .2667vw 0 .2667vw;
                         }
         
                         input[type=text]::placeholder{
                             color: hsl(var(--active-h), 45%, 65%);
+                        }
+
+                        select{
+                            padding: 0 .2667vw 0 .2667vw;
                         }
                     }
 
@@ -190,7 +194,7 @@ body{
                 .colourSelect{
                     display: flex;
                     flex-direction: row;
-                    gap: .25rem;
+                    gap: .25vw;
 
                     label.radio{
                         width: 3vw;
@@ -203,7 +207,7 @@ body{
                         justify-content: center;
                         user-select: none;
                         font-size: 1.3vw;
-                        transition: ease 200ms;
+                        transition: box-shadow,border-radius ease 200ms;
 
                         input{
                             display: none;
@@ -254,6 +258,7 @@ body{
                 #exportButton{
                     width: fit-content;
                     height: 3vw;
+                    outline: none;
                     border-radius: 1vw;
                     box-sizing: border-box;
                     background-color: hsl(var(--active-h), 60%, 50%);
@@ -270,7 +275,11 @@ body{
                     font-size: .9vw;
                     font-weight: 500;
                     letter-spacing: 0.0187vw;
-                    transition: box-shadow,scale ease 150ms;
+                    transition: box-shadow,scale ease-out 150ms;
+
+                    span{
+                        font-size: 1.3vw;
+                    }
                 }
 
                 #exportButton:hover{
@@ -316,7 +325,7 @@ body{
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
-            padding: 8.33vh 6.67vh 3.33vh 6.67vh;
+            padding: 6vh 6.67vh 3.33vh 6.67vh;
             
             p{
                 height: fit-content;
