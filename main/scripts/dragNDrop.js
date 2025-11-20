@@ -1,5 +1,4 @@
 const dropZone = document.getElementById("dropZone");
-// const imageUpload = document.getElementById("imageUpload");
 
 // Prevent default drag behaviors on the entire document
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
