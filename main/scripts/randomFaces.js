@@ -3,7 +3,7 @@ const face2 = actor2Field.previousElementSibling.querySelector('span');
 var icons = [];
 
 for(let step = 0; step < 2; step++){
-    var variant = "_" + Math.floor(Math.random() * (1 - 6) + 6);
+    var variant = "_" + Math.floor(Math.random() * 6 + 1);
     if(variant == "_1"){
         icons.push("face");
     }

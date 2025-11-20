@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="root.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=cinematic_blur,face,face_2,face_3,face_4,face_5,face_6,movie" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=check,cinematic_blur,face,face_2,face_3,face_4,face_5,face_6,movie,output_circle,palette,theaters" />
     <title>s4w6 story maker</title>
 </head>
 <body>
@@ -56,7 +56,7 @@
           <div class="inputGroup">
             <p class="hint">Content type</p>
             <div class="field">
-              <div class="icon"><span class="material-symbols-rounded">movie</span></div>
+              <div class="icon"><span class="material-symbols-rounded">theaters</span></div>
               <select class="input" name="type" id="type">
                 <option value="movie">Movie</option>
                 <option value="show">Show</option>
@@ -64,9 +64,19 @@
             </div>
           </div>
         </div>
-        <input type="radio" id="colorModeVibrant" name="colorMode" value="vibrant" checked>
-        <input type="radio" id="colorModeDominant" name="colorMode" value="dominant">
-        <button id="exportButton">Export Story</button>
+        <div class="finalTouch">
+          <div class="colourSelect">
+            <label class="radio vibrant">
+              <input type="radio" id="colorModeVibrant" name="colorMode" value="vibrant" checked>
+              <span class="material-symbols-rounded"></span>
+            </label>
+            <label class="radio dominant">
+              <input type="radio" id="colorModeDominant" name="colorMode" value="dominant">
+              <span class="material-symbols-rounded"></span>
+            </label>
+          </div>
+          <button id="exportButton"><span class="material-symbols-rounded">output_circle</span>Export Story</button>
+        </div>
       </div>
     </div>
     <div class="previewPanel">

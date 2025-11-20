@@ -181,6 +181,109 @@ body{
                     }
                 }
             }
+
+            .finalTouch{
+                display: flex;
+                justify-content: end;
+                gap: .5vw;
+
+                .colourSelect{
+                    display: flex;
+                    flex-direction: row;
+                    gap: .25rem;
+
+                    label.radio{
+                        width: 3vw;
+                        height: 3vw;
+                        box-sizing: border-box;
+                        border-radius: 1vw;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-content: center;
+                        justify-content: center;
+                        user-select: none;
+                        font-size: 1.3vw;
+                        transition: ease 200ms;
+
+                        input{
+                            display: none;
+                        }
+
+                        span{
+                            font-size: 1.3vw;
+                        }
+
+                        span::before{
+                            content: "palette";
+                        }
+                    }
+
+                    label.vibrant{
+                        background-color: hsl(var(--vibrant-h), 60%, 50%);
+                        border: hsl(var(--vibrant-h), 75%, 80%) solid 0.1875vw;
+                        color: hsl(var(--vibrant-h), 75%, 90%);
+                    }
+
+                    label.dominant{
+                        background-color: hsl(var(--dominant-h), 60%, 50%);
+                        border: hsl(var(--dominant-h), 75%, 80%) solid 0.1875vw;
+                        color: hsl(var(--dominant-h), 75%, 90%);
+                    }
+
+                    label.radio:has(input:checked){
+                        border-radius: 5vw;
+
+                        span::before{
+                            content: "check";
+                        }
+                    }
+
+                    label.vibrant.radio:has(input:checked){
+                        box-shadow: 
+                        0 .1vw 1vw .2vw hsla(var(--vibrant-h), 60%, 30%, .25),
+                        0 .15vw .5vw 0 hsla(var(--vibrant-h), 60%, 30%, .30);
+                    }
+
+                    label.dominant.radio:has(input:checked){
+                        box-shadow: 
+                        0 .1vw 1vw .2vw hsla(var(--dominant-h), 60%, 30%, .25),
+                        0 .15vw .5vw 0 hsla(var(--dominant-h), 60%, 30%, .30);
+                    }
+                }
+
+                #exportButton{
+                    width: fit-content;
+                    height: 3vw;
+                    border-radius: 1vw;
+                    box-sizing: border-box;
+                    background-color: hsl(var(--active-h), 60%, 50%);
+                    border: hsl(var(--active-h), 75%, 80%) solid 0.1875vw;
+                    padding: 0 0.70vw 0 .8vw;
+                    display: flex;
+                    gap: .4vw;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    color: hsl(var(--active-h), 75%, 90%);
+                    font-family: Clash Display Variable;
+                    font-size: .9vw;
+                    font-weight: 500;
+                    letter-spacing: 0.0187vw;
+                    transition: box-shadow,scale ease 150ms;
+                }
+
+                #exportButton:hover{
+                    cursor: pointer;
+                    box-shadow:
+                        0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
+                        0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
+                }
+
+                #exportButton:active{
+                    scale: .90;
+                }
+            }
         }
     }
 
