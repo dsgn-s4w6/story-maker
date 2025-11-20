@@ -1,4 +1,6 @@
 :root{
+    --vibrant-h: 240;
+    --dominant-h: 50;
     --active-h: 240;
     --backgroud: #0000FF;
 }
