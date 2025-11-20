@@ -134,6 +134,7 @@ body{
                             align-content: center;
                             justify-content: center;
                             user-select: none;
+                            transition: ease-out 150ms;
 
                             span{
                                 font-size: 1.3vw;
@@ -156,17 +157,26 @@ body{
                             transition: ease-out 150ms;
                             padding: 0 .2667vw 0 .2667vw;
                         }
-
-                        .input:focus{
-                            outline: none;
-                            border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
-                            box-shadow: 
-                            0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
-                            0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
-                        }
         
                         input[type=text]::placeholder{
                             color: hsl(var(--active-h), 45%, 65%);
+                        }
+                    }
+
+                    .field:focus-within{
+                        .icon{
+                            border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
+                            box-shadow:
+                                0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
+                                0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
+                        }
+
+                        .input{
+                            outline: none;
+                            border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
+                            box-shadow:
+                                0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
+                                0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
                         }
                     }
                 }
