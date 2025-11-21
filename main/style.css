@@ -453,7 +453,9 @@ body {
         .canvasContainer{
             border-radius: 5vh;
             overflow: hidden;
-            
+
+            position: relative;
+
                 #canvas {
                     height: 90vh;
                     box-sizing: border-box;
@@ -466,8 +468,6 @@ body {
                     
                     /* border-radius: 5vh; */
                     background: linear-gradient(hsl(var(--active-h), 100%, 97%), hsl(var(--active-h), 100%, 90%));
-                    
-                    position: relative;
 
                     p {
                         height: fit-content;
@@ -541,11 +541,17 @@ body {
                             .actors {
                                 display: flex;
                                 flex-direction: row;
+                                flex-wrap: wrap;
+
+                                p{
+                                    display: inline;
+                                    white-space: nowrap;
+                                }
                             }
                         }
 
                         #chip {
-                            height: 2.29vh;
+                            min-height: 2.29vh;
                             width: fit-content;
                             box-sizing: border-box;
                             
