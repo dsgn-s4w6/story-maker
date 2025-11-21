@@ -162,8 +162,74 @@ body{
                             color: hsl(var(--active-h), 45%, 65%);
                         }
 
+                        select,::picker(select){
+                            appearance: base-select;
+                        }
+
+                        select:not(:open)::picker(select){
+                            display: none;
+                        }
+
+                        select:open span{
+                            transform: rotate(180deg);
+                        }
+
                         select{
                             padding: 0 .2667vw 0 .2667vw;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-content: center;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            span{
+                                font-size: 1.3vw;
+                                transition: transform ease 175ms;
+                            }
+                        }
+
+                        ::picker(select){
+                            box-sizing: border-box;
+                            border-radius: 1vw;
+                            background-color: hsl(var(--active-h), 60%, 90%);
+                            border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
+                            transition: box-shaow,border-color ease-out 150ms;
+                            padding: .25vw;
+                            margin: .25vw 0 .25vw 0;
+                            color: hsl(var(--active-h), 45%, 40%);
+                            display: flex;
+                            flex-direction: column;
+                            gap: .25vw;
+                        }
+
+                        option{
+                            outline: none;
+                            border-radius: .75vw;
+                            height: 2vw;
+                            padding: 0 .4vw 0 .4vw;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-content: center;
+                            justify-content: space-between;
+                        }
+
+                        option::checkmark{
+                            display: none;
+                        }
+                        
+                        option::after{
+                            content: "check";
+                            font-family: "Material Symbols Rounded";
+                            font-size: 1vw;
+                            display: none;
+                        }
+
+                        option:checked::after{
+                            display: block;
+                        }
+                        
+                        select::picker-icon{
+                            display: none;
                         }
                     }
 
@@ -319,7 +385,6 @@ body{
             border-radius: 5vh;
 
             background: linear-gradient(hsl(var(--active-h), 100%, 97%), hsl(var(--active-h), 100%, 90%));
-            /* border: solid tomato; */
 
             display: flex;
             flex-direction: column;
