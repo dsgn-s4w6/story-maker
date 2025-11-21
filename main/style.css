@@ -333,7 +333,7 @@ body {
                         
                         border-radius: 1vw;
                         
-                        transition: ease 200ms;
+                        transition: ease 200ms, border-radius ease-out 300ms;
                         
                         font-size: 1.3vw;
                         

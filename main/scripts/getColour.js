@@ -7,6 +7,12 @@ let extractedColors = {
     dominant: null
 };
 
+// Default colors from root.css
+const defaultColors = {
+    vibrant: { h: 240, s: 75, l: 50 },
+    dominant: { h: 50, s: 75, l: 50 }
+};
+
 let currentMode = 'vibrant';
 
 /**
@@ -50,55 +56,52 @@ function rgbToHsl(r, g, b) {
 /**
  * Applies both vibrant and dominant colors to CSS variables
  * Also sets the "active" color based on the selected mode
+ * Uses default colors if image colors haven't been extracted yet
  */
 function applyColorMode(mode) {
     currentMode = mode;
     
+    // Use extracted colors or fall back to defaults
+    const vibrant = extractedColors.vibrant || defaultColors.vibrant;
+    const dominant = extractedColors.dominant || defaultColors.dominant;
+    
     // Set vibrant color variables
-    if (extractedColors.vibrant) {
-        const vibrant = extractedColors.vibrant;
-        document.documentElement.style.setProperty(
-            '--vibrant-color', 
-            `hsl(${vibrant.h}, ${vibrant.s}%, ${vibrant.l}%)`
-        );
-        document.documentElement.style.setProperty('--vibrant-h', vibrant.h);
-        document.documentElement.style.setProperty('--vibrant-s', `${vibrant.s}%`);
-        document.documentElement.style.setProperty('--vibrant-l', `${vibrant.l}%`);
-    }
+    document.documentElement.style.setProperty(
+        '--vibrant-color', 
+        `hsl(${vibrant.h}, ${vibrant.s}%, ${vibrant.l}%)`
+    );
+    document.documentElement.style.setProperty('--vibrant-h', vibrant.h);
+    document.documentElement.style.setProperty('--vibrant-s', `${vibrant.s}%`);
+    document.documentElement.style.setProperty('--vibrant-l', `${vibrant.l}%`);
     
     // Set dominant color variables
-    if (extractedColors.dominant) {
-        const dominant = extractedColors.dominant;
-        document.documentElement.style.setProperty(
-            '--dominant-color', 
-            `hsl(${dominant.h}, ${dominant.s}%, ${dominant.l}%)`
-        );
-        document.documentElement.style.setProperty('--dominant-h', dominant.h);
-        document.documentElement.style.setProperty('--dominant-s', `${dominant.s}%`);
-        document.documentElement.style.setProperty('--dominant-l', `${dominant.l}%`);
-    }
+    document.documentElement.style.setProperty(
+        '--dominant-color', 
+        `hsl(${dominant.h}, ${dominant.s}%, ${dominant.l}%)`
+    );
+    document.documentElement.style.setProperty('--dominant-h', dominant.h);
+    document.documentElement.style.setProperty('--dominant-s', `${dominant.s}%`);
+    document.documentElement.style.setProperty('--dominant-l', `${dominant.l}%`);
     
     // Set "active" variables based on selected mode
-    const activeColor = extractedColors[mode];
-    if (activeColor) {
-        document.documentElement.style.setProperty(
-            '--active-color', 
-            `hsl(${activeColor.h}, ${activeColor.s}%, ${activeColor.l}%)`
-        );
-        document.documentElement.style.setProperty('--active-h', activeColor.h);
-        document.documentElement.style.setProperty('--active-s', `${activeColor.s}%`);
-        document.documentElement.style.setProperty('--active-l', `${activeColor.l}%`);
-    }
+    const activeColor = mode === 'vibrant' ? vibrant : dominant;
+    document.documentElement.style.setProperty(
+        '--active-color', 
+        `hsl(${activeColor.h}, ${activeColor.s}%, ${activeColor.l}%)`
+    );
+    document.documentElement.style.setProperty('--active-h', activeColor.h);
+    document.documentElement.style.setProperty('--active-s', `${activeColor.s}%`);
+    document.documentElement.style.setProperty('--active-l', `${activeColor.l}%`);
     
     console.log(`Color mode switched to: ${mode}`, {
-        vibrant: extractedColors.vibrant ? {
-            hsl: `hsl(${extractedColors.vibrant.h}, ${extractedColors.vibrant.s}%, ${extractedColors.vibrant.l}%)`,
-            rgb: `rgb(${extractedColors.vibrant.r}, ${extractedColors.vibrant.g}, ${extractedColors.vibrant.b})`
-        } : 'not extracted yet',
-        dominant: extractedColors.dominant ? {
-            hsl: `hsl(${extractedColors.dominant.h}, ${extractedColors.dominant.s}%, ${extractedColors.dominant.l}%)`,
-            rgb: `rgb(${extractedColors.dominant.r}, ${extractedColors.dominant.g}, ${extractedColors.dominant.b})`
-        } : 'not extracted yet',
+        vibrant: {
+            hsl: `hsl(${vibrant.h}, ${vibrant.s}%, ${vibrant.l}%)`,
+            source: extractedColors.vibrant ? 'extracted' : 'default'
+        },
+        dominant: {
+            hsl: `hsl(${dominant.h}, ${dominant.s}%, ${dominant.l}%)`,
+            source: extractedColors.dominant ? 'extracted' : 'default'
+        },
         active: mode
     });
 }
