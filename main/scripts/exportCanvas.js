@@ -47,7 +47,7 @@ async function exportCanvasAsPNG() {
         // Download
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.download = `story-${Date.now()}.png`;
+        link.download = `story.png`;
         link.href = url;
         link.click();
         URL.revokeObjectURL(url);
