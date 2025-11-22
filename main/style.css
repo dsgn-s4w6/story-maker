@@ -1,13 +1,13 @@
-@font-face {
+@font-face{
     font-family: "Clash Display Variable-";
     src: url(fonts/ClashDisplay-Variable.ttf) format("truetype");
 }
 
-p {
+p{
     margin: 0;
 }
 
-body {
+body{
     display: flex;
     flex-direction: row;
     gap: 1.7vw;
@@ -15,7 +15,7 @@ body {
     
     background-color: hsl(var(--active-h), 65%, 15%);
 
-    .userPanel {
+    .userPanel{
         width: 100%;
         max-width: 55vw;
         height: 100vh;
@@ -27,13 +27,13 @@ body {
         border-radius: 0 2.8vw 2.8vw 0;
         background-color: hsl(var(--active-h), 90%, 97%);
 
-        .text {
+        .text{
             display: flex;
             flex-direction: column;
             gap: .25vw;
             margin-bottom: 4vw;
 
-            h1 {
+            h1{
                 width: fit-content;
                 height: fit-content;
                 
@@ -48,7 +48,7 @@ body {
                 text-box-trim: trim-both;
             }
 
-            p {
+            p{
                 width: fit-content;
                 height: fit-content;
                 
@@ -63,14 +63,14 @@ body {
             }
         }
 
-        .userInput {
+        .userInput{
             width: 100%;
             
             display: flex;
             flex-direction: column;
             gap: 1.5vw;
 
-            #dropZone {
+            #dropZone{
                 width: 100%;
                 height: 12.5vw;
                 box-sizing: border-box;
@@ -89,12 +89,12 @@ body {
                 cursor: pointer;
                 transition: 150ms ease;
 
-                .text {
+                .text{
                     display: flex;
                     gap: 0.5vw;
                     margin: 0;
 
-                    p {
+                    p{
                         font-family: Clash Display Variable;
                         font-size: 1.5vw;
                         font-weight: 500;
@@ -102,7 +102,7 @@ body {
                         color: hsl(var(--active-h), 30%, 40%);
                     }
 
-                    p.secondary {
+                    p.secondary{
                         font-family: Clash Display Variable;
                         font-size: 1.25vw;
                         font-weight: 500;
@@ -111,23 +111,23 @@ body {
                     }
                 }
 
-                input {
+                input{
                     display: none;
                 }
             }
 
-            .row {
+            .row{
                 display: flex;
                 gap: 0.5vw;
 
-                .inputGroup {
+                .inputGroup{
                     width: 100%;
                     
                     display: flex;
                     flex-direction: column;
                     gap: 0.125vw;
 
-                    p {
+                    p{
                         margin-left: 0.5vw;
                         
                         font-family: Clash Display Variable;
@@ -139,12 +139,12 @@ body {
                         user-select: none;
                     }
 
-                    .field {
+                    .field{
                         display: flex;
                         flex-direction: row;
                         gap: 0.125vw;
 
-                        .icon {
+                        .icon{
                             width: 3vw;
                             
                             display: flex;
@@ -162,13 +162,13 @@ body {
                             
                             user-select: none;
 
-                            span {
+                            span{
                                 font-size: 1.3vw;
                                 color: hsl(var(--active-h), 45%, 40%);
                             }
                         }
 
-                        .input {
+                        .input{
                             width: 100%;
                             height: 3vw;
                             box-sizing: border-box;
@@ -188,23 +188,23 @@ body {
                             color: hsl(var(--active-h), 45%, 40%);
                         }
 
-                        input[type=text]::placeholder {
+                        input[type=text]::placeholder{
                             color: hsl(var(--active-h), 45%, 65%);
                         }
 
-                        select, ::picker(select) {
+                        select, ::picker(select){
                             appearance: base-select;
                         }
 
-                        select:not(:open)::picker(select) {
+                        select:not(:open)::picker(select){
                             display: none;
                         }
 
-                        select:open span {
+                        select:open span{
                             transform: rotate(180deg);
                         }
 
-                        select {
+                        select{
                             display: flex;
                             flex-wrap: wrap;
                             align-content: center;
@@ -212,14 +212,14 @@ body {
                             justify-content: space-between;
                             padding: 0 .2667vw 0 .2667vw;
 
-                            span {
+                            span{
                                 transition: transform ease 175ms;
                                 
                                 font-size: 1.3vw;
                             }
                         }
 
-                        ::picker(select) {
+                        ::picker(select){
                             box-sizing: border-box;
                             
                             display: flex;
@@ -237,7 +237,7 @@ body {
                             color: hsl(var(--active-h), 45%, 40%);
                         }
 
-                        option {
+                        option{
                             height: 2vw;
                             
                             display: flex;
@@ -251,11 +251,11 @@ body {
                             outline: none;
                         }
 
-                        option::checkmark {
+                        option::checkmark{
                             display: none;
                         }
 
-                        option::after {
+                        option::after{
                             display: none;
                             
                             font-family: "Material Symbols Rounded";
@@ -264,17 +264,17 @@ body {
                             content: "check";
                         }
 
-                        option:checked::after {
+                        option:checked::after{
                             display: block;
                         }
 
-                        select::picker-icon {
+                        select::picker-icon{
                             display: none;
                         }
                     }
 
-                    .field:focus-within {
-                        .icon {
+                    .field:focus-within{
+                        .icon{
                             border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
                             
                             box-shadow:
@@ -282,7 +282,7 @@ body {
                                 0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
                         }
 
-                        .input {
+                        .input{
                             border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
                             
                             box-shadow:
@@ -294,13 +294,13 @@ body {
                     }
 
                     .field:hover{
-                        .icon {
+                        .icon{
                             box-shadow:
                                 0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
                                 0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
                         }
 
-                        .input {
+                        .input{
                             box-shadow:
                                 0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
                                 0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
@@ -311,17 +311,17 @@ body {
                 }
             }
 
-            .finalTouch {
+            .finalTouch{
                 display: flex;
                 justify-content: end;
                 gap: .5vw;
 
-                .colourSelect {
+                .colourSelect{
                     display: flex;
                     flex-direction: row;
                     gap: .25vw;
 
-                    label.radio {
+                    label.radio{
                         width: 3vw;
                         height: 3vw;
                         box-sizing: border-box;
@@ -339,55 +339,55 @@ body {
                         
                         user-select: none;
 
-                        input {
+                        input{
                             display: none;
                         }
 
-                        span {
+                        span{
                             font-size: 1.3vw;
                         }
 
-                        span::before {
+                        span::before{
                             content: "palette";
                         }
                     }
 
-                    label.vibrant {
+                    label.vibrant{
                         background-color: hsl(var(--vibrant-h), 60%, 50%);
                         border: hsl(var(--vibrant-h), 75%, 80%) solid 0.1875vw;
                         
                         color: hsl(var(--vibrant-h), 75%, 90%);
                     }
 
-                    label.dominant {
+                    label.dominant{
                         background-color: hsl(var(--dominant-h), 60%, 50%);
                         border: hsl(var(--dominant-h), 75%, 80%) solid 0.1875vw;
                         
                         color: hsl(var(--dominant-h), 75%, 90%);
                     }
 
-                    label.radio:has(input:checked) {
+                    label.radio:has(input:checked){
                         border-radius: 5vw;
 
-                        span::before {
+                        span::before{
                             content: "check";
                         }
                     }
 
-                    label.vibrant.radio:has(input:checked) {
+                    label.vibrant.radio:has(input:checked){
                         box-shadow:
                             0 .1vw 1vw .2vw hsla(var(--vibrant-h), 60%, 30%, .25),
                             0 .15vw .5vw 0 hsla(var(--vibrant-h), 60%, 30%, .30);
                     }
 
-                    label.dominant.radio:has(input:checked) {
+                    label.dominant.radio:has(input:checked){
                         box-shadow:
                             0 .1vw 1vw .2vw hsla(var(--dominant-h), 60%, 30%, .25),
                             0 .15vw .5vw 0 hsla(var(--dominant-h), 60%, 30%, .30);
                     }
                 }
 
-                #exportButton {
+                #exportButton{
                     width: fit-content;
                     height: 3vw;
                     box-sizing: border-box;
@@ -414,12 +414,12 @@ body {
                     
                     outline: none;
 
-                    span {
+                    span{
                         font-size: 1.3vw;
                     }
                 }
 
-                #exportButton:hover {
+                #exportButton:hover{
                     box-shadow:
                         0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
                         0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
@@ -427,14 +427,14 @@ body {
                     cursor: pointer;
                 }
 
-                #exportButton:active {
+                #exportButton:active{
                     scale: .90;
                 }
             }
         }
     }
 
-    .previewPanel {
+    .previewPanel{
         width: fit-content;
         height: 100vh;
         box-sizing: border-box;
@@ -456,7 +456,7 @@ body {
 
             position: relative;
 
-                #canvas {
+                #canvas{
                     height: 90vh;
                     box-sizing: border-box;
                     aspect-ratio: 9/16;
@@ -469,7 +469,7 @@ body {
                     /* border-radius: 5vh; */
                     background: linear-gradient(hsl(var(--active-h), 100%, 97%), hsl(var(--active-h), 100%, 90%));
 
-                    p {
+                    p{
                         height: fit-content;
                         
                         margin: 0;
@@ -479,11 +479,11 @@ body {
                         color: hsl(var(--active-h), 40%, 60%);
                     }
 
-                    .emphasized {
+                    .emphasized{
                         color: hsl(var(--active-h), 50%, 40%);
                     }
 
-                    .watermark {
+                    .watermark{
                         margin-bottom: 0.42vh;
                         
                         font-size: 1.3vh;
@@ -491,7 +491,7 @@ body {
                         text-align: center;
                     }
 
-                    #image {
+                    #image{
                         width: 100%;
                         aspect-ratio: 0.67485667485;
                         
@@ -507,7 +507,7 @@ body {
                             0 0.26vh 0.52vh 0px hsla(var(--active-h), 20%, 20%, .2);
                     }
 
-                    .info {
+                    .info{
                         width: 100%;
                         
                         display: flex;
@@ -518,7 +518,7 @@ body {
                         line-height: 4.17vh;
                         text-wrap: balance;
 
-                        #title {
+                        #title{
                             width: 100%;
                             
                             display: block;
@@ -528,7 +528,7 @@ body {
                             text-wrap: balance;
                         }
 
-                        .secondary {
+                        .secondary{
                             width: 100%;
                             
                             display: flex;
@@ -538,7 +538,7 @@ body {
                             font-weight: 525;
                             line-height: 2.08vh;
 
-                            .actors {
+                            .actors{
                                 display: flex;
                                 flex-direction: row;
                                 flex-wrap: wrap;
@@ -550,7 +550,7 @@ body {
                             }
                         }
 
-                        #chip {
+                        #chip{
                             min-height: 2.29vh;
                             width: fit-content;
                             box-sizing: border-box;
@@ -572,12 +572,12 @@ body {
                                 0 0 0.78vh hsla(0, 0%, 0%, .1),
                                 0 0 0.52vh hsla(0, 0%, 0%, .1);
 
-                            svg {
+                            svg{
                                 height: 2.5vh;
                                 width: 2.5vh;
                             }
 
-                            p {
+                            p{
                                 font-size: 1.46vh;
                                 font-weight: 600;
                                 color: hsl(var(--active-h), 75%, 35%);
@@ -585,7 +585,7 @@ body {
                         }
                     }
 
-                    .logo {
+                    .logo{
                         height: 3.75vh;
                         width: 14.06vh;
                         
