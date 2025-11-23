@@ -9,29 +9,28 @@ p{
 
 body{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1.7vw;
     margin: 0;
     
     background-color: hsl(var(--active-h), 65%, 15%);
 
     .userPanel{
-        width: 100%;
-        max-width: 65vw;
+        width: 100vw;
         height: 100vh;
         box-sizing: border-box;
         
         display: block;
         padding: 2.8vw;
         
-        border-radius: 0 2.8vw 2.8vw 0;
+        border-radius: 0 0 2.8vw 2.8vw;
         background-color: hsl(var(--active-h), 90%, 97%);
 
         .text{
             display: flex;
             flex-direction: column;
             gap: .25vw;
-            margin-bottom: 4vw;
+            margin-bottom: 2vw;
 
             h1{
                 width: fit-content;
@@ -43,7 +42,7 @@ body{
                 color: hsl(var(--active-h), 60%, 15%);
                 
                 font-family: Clash Display Variable;
-                font-size: 3.25vw;
+                font-size: 8vw;
                 font-weight: 600;
                 text-box-trim: trim-both;
             }
@@ -56,7 +55,8 @@ body{
                 margin: 0;
                 
                 font-family: Clash Display Variable;
-                font-size: 1.5vw;
+                font-size: 4vw;
+                line-height: 90%;
                 font-weight: 500;
                 text-box-trim: trim-both;
                 color: hsl(var(--active-h), 40%, 30%);
@@ -118,6 +118,7 @@ body{
 
             .row{
                 display: flex;
+                flex-direction: column;
                 gap: 0.5vw;
 
                 .inputGroup{
@@ -131,9 +132,9 @@ body{
                         margin-left: 0.5vw;
                         
                         font-family: Clash Display Variable;
-                        font-size: .9vw;
+                        font-size: 2vw;
                         font-weight: 550;
-                        letter-spacing: 0.0187vw;
+                        letter-spacing: 0.02vw;
                         color: hsl(var(--active-h), 40%, 30%);
                         
                         user-select: none;
@@ -142,10 +143,10 @@ body{
                     .field{
                         display: flex;
                         flex-direction: row;
-                        gap: 0.125vw;
+                        gap: 0.5vw;
 
                         .icon{
-                            width: 3vw;
+                            width: 8vw;
                             
                             display: flex;
                             flex-direction: row;
@@ -154,37 +155,37 @@ body{
                             align-content: center;
                             justify-content: center;
                             
-                            border-radius: 1vw 0.25vw 0.25vw 1vw;
+                            border-radius: 3vw .75vw .75vw 3vw;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 75%, 80%) solid 0.1875vw;
+                            border: hsl(var(--active-h), 75%, 80%) solid 0.5vw;
                             
                             transition: ease-out 150ms;
                             
                             user-select: none;
 
                             span{
-                                font-size: 1.3vw;
+                                font-size: 4.5vw;
                                 color: hsl(var(--active-h), 45%, 40%);
                             }
                         }
 
                         .input{
                             width: 100%;
-                            height: 3vw;
+                            height: 8vw;
                             box-sizing: border-box;
                             
-                            padding: 0 .2667vw 0 .2667vw;
+                            padding: 0 1vw 0 1vw;
                             
-                            border-radius: 0.25vw 1vw 1vw 0.25vw;
+                            border-radius: 0.75vw 3vw 3vw 0.75vw;
                             background-color: hsl(var(--active-h), 60%, 90%);
-                            border: hsl(var(--active-h), 75%, 80%) solid 0.1875vw;
+                            border: hsl(var(--active-h), 75%, 80%) solid .5vw;
                             
                             transition: ease-out 150ms;
                             
                             font-family: Clash Display Variable;
-                            font-size: .9vw;
+                            font-size: 3vw;
                             font-weight: 500;
-                            letter-spacing: 0.0187vw;
+                            letter-spacing: 0.02vw;
                             color: hsl(var(--active-h), 45%, 40%);
                         }
 
