@@ -12,13 +12,12 @@ body{
     flex-direction: row;
     gap: 1.7vw;
     margin: 0;
-    overflow: hidden;
     
     background-color: hsl(var(--active-h), 65%, 15%);
 
     .userPanel{
         width: 100%;
-        max-width: 55vw;
+        max-width: 65vw;
         height: 100vh;
         box-sizing: border-box;
         
@@ -444,8 +443,7 @@ body{
         flex-direction: column;
         align-content: flex-end;
         justify-content: center;
-        padding: 48px 0 48px 0;
-        padding-right: 2vw;
+        padding: 3vw 2vw 3vw 0;
         
         background-color: none;
         
@@ -599,8 +597,25 @@ body{
     }
 }
 
-@media screen and (max-width: 700){
+@media screen and (max-width: 700px){
     body{
         flex-direction: column;
+
+        .userPanel{
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vh;
+            border-radius: 0 0 2.8vw 2.8vw;
+
+            .row{
+                flex-direction: column;
+            }
+        }
+
+        .previewPanel{
+            width: 100vw;
+            height: 100vh;
+            padding: 3vw;
+        }
     }
 }
