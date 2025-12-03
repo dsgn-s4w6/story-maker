@@ -148,7 +148,6 @@ body{
                             width: 3vw;
                             
                             display: flex;
-                            flex-direction: row;
                             gap: 0.125vw;
                             flex-wrap: wrap;
                             align-content: center;
@@ -278,16 +277,16 @@ body{
                             border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
                             
                             box-shadow:
-                                0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
-                                0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
+                                0 .0625vw .5vw .1875vw hsla(var(--active-h), 60%, 70%, 0.25),
+                                0 .125vw .25vw 0 hsla(var(--active-h), 60%, 30%, 0.20);
                         }
 
                         .input{
                             border: hsl(var(--active-h), 75%, 30%) solid 0.1875vw;
                             
                             box-shadow:
-                                0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
-                                0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
+                                0 .0625vw .5vw .1875vw hsla(var(--active-h), 60%, 70%, 0.25),
+                                0 .125vw .25vw 0 hsla(var(--active-h), 60%, 30%, 0.20);
                             
                             outline: none;
                         }
@@ -296,14 +295,14 @@ body{
                     .field:hover{
                         .icon{
                             box-shadow:
-                                0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
-                                0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
+                                0 .0625vw .5vw .1875vw hsla(var(--active-h), 60%, 70%, 0.25),
+                                0 .125vw .25vw 0 hsla(var(--active-h), 60%, 30%, 0.20);
                         }
 
                         .input{
                             box-shadow:
-                                0 1px 8px 3px hsla(var(--active-h), 60%, 70%, 0.25),
-                                0 2px 4px 0 hsla(var(--active-h), 60%, 30%, 0.20);
+                                0 .0625vw .5vw .1875vw hsla(var(--active-h), 60%, 70%, 0.25),
+                                0 .125vw .25vw 0 hsla(var(--active-h), 60%, 30%, 0.20);
                             
                             outline: none;
                         }
